@@ -7,14 +7,14 @@ export default function Product({product}) {
         edit:false,
         color:"rgba(20,20,20,0.1)",
         activeColor:"tomato",
-        value:2.5,
+        value:product.total_rating,
         isHalf:true,
         size:window.innerWidth<600 ?20:25,
 
     }
   return (
    
-    <Link className='productCard' to={product._id}>
+    <Link className='productCard' to={`/product/${product._id}`}>
         
             
 
@@ -22,7 +22,7 @@ export default function Product({product}) {
         <p>{product.name}</p>
         <div>
             <RactStars {...options} />
-            <span>(256 Reviews)</span>
+            <span>({product.numOfReviews})</span>
         </div>
         <span>Rs:{product.price}</span>
     
