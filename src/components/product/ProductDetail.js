@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom'
 import ReviewCard from './ReviewCard'
 import Loader from '../layout/loader/Loader'
 import {useAlert} from 'react-alert'
+import MeatData from '../layout/MeatData'
 function ProductDetail() {
     const alert= useAlert()
     const {id}= useParams()
@@ -26,7 +27,7 @@ function ProductDetail() {
         dispatch(getProductDetilas(id))
         
         
-    },[dispatch, id])
+    },[dispatch, id,alert,error])
     const options={
         edit:false,
         color:"rgba(20,20,20,0.1)",
@@ -42,7 +43,9 @@ function ProductDetail() {
         <Fragment>
             {
                 loading? <Loader/>:
+
                 <Fragment>
+                    <MeatData title={`${product.name} --Ecommerce`}/>
                 <div className='productDatail'>
                 <div>
                     <Carousel className='carsel'>

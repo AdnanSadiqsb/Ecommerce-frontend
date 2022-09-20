@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import {FaMouse} from 'react-icons/fa'
 import './home.css'
-import Product from './Product'
+import Product from './ProductCard'
 import MeatData from '../layout/MeatData'
 import {clearErrors, getProduct} from '../../actions/productAction'
 import {useSelector,useDispatch} from 'react-redux'
@@ -9,18 +9,19 @@ import Loader from '../layout/loader/Loader'
 import {useAlert} from 'react-alert'
 export default function Home() {
   const alert=useAlert()
-
-
+  
+  
   const dispatch= useDispatch()
-
+  
   const {loading,error, products,productsCount}=useSelector(state=>state.products)
-
+  
   useEffect(()=>{
     if(error)
     {
       alert.error(error)
       dispatch(clearErrors)
     }
+  
     dispatch(getProduct())
   },[dispatch,error,alert])
   return (
@@ -31,7 +32,7 @@ export default function Home() {
       :
       
     <Fragment>
-    <MeatData title="Ecommerce"/>
+    <MeatData title="Home  --Ecommerce"/>
       <div className="banner">
           <p>welcome to E-Commerce</p>
           <h1>FIND AMAZING PRODUCTS BELOW !</h1>
@@ -44,7 +45,8 @@ export default function Home() {
       <div className="container" id='container'>
       {
         products && products.map(product=>{
-          return <Product product={product}/>
+        
+          return <Product product={product} key={product._id}/>
         })
       }
 
