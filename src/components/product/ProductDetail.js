@@ -19,6 +19,9 @@ function ProductDetail() {
     const {product,loading, error} =useSelector(state=>state.productDetail)
     console.log(product.total_rating)
     useEffect(()=>{
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    },[])
+    useEffect(()=>{
         if(error)
         {
             alert.error(error)
