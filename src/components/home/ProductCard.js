@@ -22,7 +22,7 @@ export default function ProductCard({product}) {
         <p>{product.name}</p>
         <div>
             <RactStars {...options} />
-            <span>({product.numOfReviews})</span>
+            <span>Reviews({product.numOfReviews})</span>
         </div>
         <span>Rs:{product.price}</span>
     

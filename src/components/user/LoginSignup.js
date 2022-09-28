@@ -6,7 +6,7 @@ import  MailOutlineIcon  from '@material-ui/icons/MailOutline'
 import LockOpenIcon  from '@material-ui/icons/LockOpen'
 import FaceIcon from '@material-ui/icons/Face'
 import {useDispatch, useSelector} from 'react-redux'
-import {clearErrors, login} from '../../actions/userAction'
+import {clearErrors, login, register} from '../../actions/userAction'
 import {useAlert} from 'react-alert'
 import {useNavigate} from 'react-router-dom'
 function LoginSignup() {
@@ -20,6 +20,7 @@ function LoginSignup() {
     const [loginEmail, setLoginEmail]=useState("")
     const [loginPassword, setLoginPassword]=useState("")
     useEffect(()=>{
+  
         if(error){
             alert.error(error)
             dispatch(clearErrors)
@@ -29,7 +30,7 @@ function LoginSignup() {
             navigate('/account')
         }
 
-    },[error, dispatch])
+    },[error, dispatch, alert, isAuthenciate])
     const [user,setUser]=useState({
         name:"",
         email:"",
@@ -51,7 +52,7 @@ function LoginSignup() {
         myFrom.set("email",email)
         myFrom.set("password",password)
         myFrom.set("avatar",avatar)
-        console.log("regestered")
+        dispatch(register(myFrom))
     }
     const registerDataChange=(e)=>{
         if(e.target.name==='avatar')

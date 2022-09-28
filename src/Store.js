@@ -1,4 +1,4 @@
-import {combineReducers,applyMiddleware} from 'redux'
+import {combineReducers,applyMiddleware, compose} from 'redux'
 import { configureStore } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk'
 import { productReducer,productDetailReducer } from './reducers/productReducer'
@@ -13,12 +13,12 @@ const reducers = combineReducers({
 
 const middleWare=[thunk]
 
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ;
 const store = configureStore(
         {reducer:reducers},
         composeEnhancers(
-            applyMiddleware(...middleWare)
+            applyMiddleware(middleWare)
         )
     );
 
