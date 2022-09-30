@@ -49,14 +49,15 @@ const UserOptions = (user) => {
   return (
     <Fragment>
       <Backdrop open={open} style={{opacity:"0.8", zIndex:'10'}}/>
-      <SpeedDial
+      <SpeedDial 
+      
       ariaLabel='SpeedDail tool tip'
       className='speedDail'
       onClose={()=>setOpen(false)}
         onOpen={()=>setOpen(true)}
         open={open}
         icon={
-        <img className='speedDailIcon' src={user.user.avatar.url ? user.user.avatar.url:'./Profile.jpg' } alt='Profile pic'/>    
+        <img style={{borderRadius:'10%'}} className='speedDailIcon' src={user.user.avatar.url ? user.user.avatar.url:'./Profile.jpg' } alt='Profile pic'/>    
         }
         direction='down'
         >

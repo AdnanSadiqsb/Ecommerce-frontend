@@ -2,12 +2,14 @@ import {combineReducers,applyMiddleware, compose} from 'redux'
 import { configureStore } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk'
 import { productReducer,productDetailReducer } from './reducers/productReducer'
-import { userReducer } from './reducers/userReducer'
+import { userReducer,profileReducer, forgetPasswordReducer } from './reducers/userReducer'
 
 const reducers = combineReducers({
      products:productReducer,
      productDetail:productDetailReducer,
-     user:userReducer
+     user:userReducer,
+     profile:profileReducer,
+     forgetPassword:forgetPasswordReducer
 
  })
 

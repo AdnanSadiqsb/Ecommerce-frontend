@@ -18,7 +18,7 @@ function Profile() {
             navigate('/login')
         }
         
-    },[isAuthenciate,user, loading])
+    },[isAuthenciate,user, loading, navigate])
 
   return (
 
