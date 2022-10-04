@@ -17,6 +17,7 @@ import UpdateProfile from './components/user/UpdateProfile.js';
 import UpdatePassword from './components/user/UpdatePassword.js';
 import ForgetPassword from './components/user/ForgetPassword.js';
 import ResetPassword from './components/user/ResetPassword.js';
+import Cart from './components/cart/Cart.js';
 function App() {
   const dispatch=useDispatch()
   const {isAuthenciate, user} =useSelector(state=>state.user)
@@ -45,6 +46,7 @@ function App() {
 
         <Route exact path ='/password/forget' element={<ForgetPassword/> }  ></Route>
         <Route exact path ='/password/reset/:token' element={<ResetPassword/> }  ></Route>
+        <Route exact path ='/cart' element={<Cart/> }  ></Route>
 
       </Routes>
 

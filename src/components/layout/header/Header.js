@@ -44,7 +44,7 @@ const Header = () => {
       </ul>
       <form className="d-flex" role="search">
         <Link className='custom-icons' to={'/login'} ><i className="fa-solid fa-right-to-bracket"></i></Link>
-        <Link className='custom-icons' to={'/'}><i className="fa-solid fa-cart-arrow-down"></i></Link>
+        <Link className='custom-icons' to={'/cart'}><i className="fa-solid fa-cart-arrow-down"></i></Link>
         <Link className="custom-icons" to={'/Search'}><FaSearch/></Link>
       </form>
     </div>

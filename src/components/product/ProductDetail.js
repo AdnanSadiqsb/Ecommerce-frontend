@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Fragment } from 'react'
 import Carousel from 'react-material-ui-carousel'
 import './productDetail.css'
@@ -11,13 +11,39 @@ import ReviewCard from './ReviewCard'
 import Loader from '../layout/loader/Loader'
 import {useAlert} from 'react-alert'
 import MeatData from '../layout/MeatData'
+import {addItemsToCart} from '../../actions/cartAction'
 function ProductDetail() {
     const alert= useAlert()
     const {id}= useParams()
     const dispatch= useDispatch()
     
     const {product,loading, error} =useSelector(state=>state.productDetail)
-    console.log(product.total_rating)
+    const [quantity, setQuantity]=useState(1)
+    const increaseQuantity=()=>{
+        if(product.stock>quantity)
+        {
+            const q=quantity
+            setQuantity(q+1)
+
+        }
+        else{
+
+            alert.info(`only avaliable quantity is ${quantity}`)
+        }
+    }
+    const decreaseQuantity=()=>{
+        if(quantity>1)
+        {
+            const q=quantity
+            setQuantity(q-1)
+
+        }
+    }
+    const addToCartHandler=()=>{
+        dispatch(addItemsToCart(id,quantity))
+        alert.success("item added to cart")
+
+    }
     useEffect(()=>{
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     },[])
@@ -40,7 +66,6 @@ function ProductDetail() {
         size:window.innerWidth<600 ?20:25,
 
     }
-    console.log(product.total_rating)
   return (
 
         <Fragment>
@@ -80,12 +105,12 @@ function ProductDetail() {
                         <h1>RS:{product.price}</h1>
                         <div className='deatailBlock-3-1'>
                             <div className='deatailBlock-3-1-1'>
-                                <button>-</button>
-                                <input type="number" value={1} />
-                                <button>+</button>
+                                <button onClick={decreaseQuantity}>-</button>
+                                <input type="number" value={quantity} readOnly />
+                                <button onClick={increaseQuantity}>+</button>
                             </div>
                             {"  "}
-                            <button>Add To Cart</button>
+                            <button onClick={addToCartHandler}>Add To Cart</button>
         
                         </div>
                         status:{" "}
