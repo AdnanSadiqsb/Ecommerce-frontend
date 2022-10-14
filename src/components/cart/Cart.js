@@ -90,9 +90,11 @@ function Cart() {
               <p>subtotal</p>
           </div>
           {
-              cartItems && cartItems.map((item)=>(
-                  <div className="cartConatiner">
-                  <CartItems item={item} deleteCartItem={deleteCartItem} key={item.product} />
+              cartItems && cartItems.map((item, index)=>(
+            
+                  <div key={index} className="cartConatiner">
+                    
+                  <CartItems  item={item} deleteCartItem={deleteCartItem} key={item.product} />
                   <div className="cartInput">
                       <button onClick={()=>decreaseQuantity(item.product,item.quantity)}>-</button>
                       <input type="number" value={item.quantity} name="quantity" readOnly />

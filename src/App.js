@@ -20,11 +20,36 @@ import ResetPassword from './components/user/ResetPassword.js';
 import Cart from './components/cart/Cart.js';
 import Shipping from './components/cart/Shipping.js';
 import ConfirmOrder from './components/cart/ConfirmOrder.js';
+import { useState } from 'react';
+import Payment from './components/cart/Payment.js';
+import axios from 'axios';
+import {Elements} from '@stripe/react-stripe-js'
+import {loadStripe} from '@stripe/stripe-js'
+import Success from './components/cart/Success.js';
 function App() {
   const dispatch=useDispatch()
   const {isAuthenciate, user} =useSelector(state=>state.user)
+  const [stripeApiKey, setStripeApiKey]=useState('')
+  async function getStripeApiKey()
+  {
+    console.log("request progress")
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+        },
+        withCredentials: true
+      }
+    const {data}= await axios.get('http://localhost:4000/api/v1/stripeapikey', config)
+    setStripeApiKey(data.stripeApiKey)
+    console.log(data)
+    console.log(data.stripeApiKey)
+
+  }
+
   React.useEffect(()=>{
     dispatch(loadUser())
+    getStripeApiKey()
+
     
   },[dispatch])
 
@@ -47,6 +72,16 @@ function App() {
         {isAuthenciate && <Route exact path ='/password/update' element={<UpdatePassword/> }  ></Route>}
         {isAuthenciate && <Route exact path ='/shipping' element={<Shipping/> }  ></Route>}
         {isAuthenciate && <Route exact path ='/order/confirm' element={<ConfirmOrder/> }  ></Route>}
+        {isAuthenciate && <Route exact path ='/success' element={<Success/> }  ></Route>}
+
+        
+        {
+          stripeApiKey &&(
+            isAuthenciate && <Route exact path ='/process/payment' element={<Elements stripe={loadStripe(stripeApiKey)}><Payment/></Elements> }  ></Route>
+
+          )
+        }
+
 
         <Route exact path ='/password/forget' element={<ForgetPassword/> }  ></Route>
         <Route exact path ='/password/reset/:token' element={<ResetPassword/> }  ></Route>

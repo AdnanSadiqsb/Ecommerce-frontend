@@ -4,8 +4,10 @@ import CheckoutSteps from './CheckoutSteps'
 import MeatData from '../layout/MeatData'
 import {Link} from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import {useNavigate} from 'react-router-dom'
 
 function ConfirmOrder() {
+    const navigate= useNavigate()
     const {shippingInfo, cartItems} =useSelector((state)=>state.cart)
     const {user}= useSelector(state=>state.user)
     console.log(cartItems)
@@ -17,6 +19,20 @@ function ConfirmOrder() {
 
     const totalPrice=subtotal+ShippingCharges+tax
     const address=`${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}`
+
+    const proceedToPayment=()=>{
+        const data={
+            subtotal,
+            ShippingCharges,
+            tax,
+            totalPrice,
+
+
+        }
+        sessionStorage.setItem('orderInfo', JSON.stringify(data))
+        navigate('/process/payment')
+
+    }
   return (
     <Fragment>
         <MeatData title={'confirm order'}/>
@@ -83,7 +99,7 @@ function ConfirmOrder() {
                             </p>
                             <span>PS:{totalPrice}</span>
                         </div>
-                        <button className='btn-proceesToPay'>Proceed To Payment</button>
+                        <button className='btn-proceesToPay' onClick={proceedToPayment} >Proceed To Payment</button>
 
 
                     </div>

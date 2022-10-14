@@ -4,6 +4,7 @@ import thunk from 'redux-thunk'
 import { productReducer,productDetailReducer } from './reducers/productReducer'
 import { userReducer,profileReducer, forgetPasswordReducer } from './reducers/userReducer'
 import { cartReducer } from './reducers/cartReducer'
+import { newOrderReuducer } from './reducers/orderReducer'
 
 const reducers = combineReducers({
      products:productReducer,
@@ -11,7 +12,8 @@ const reducers = combineReducers({
      user:userReducer,
      profile:profileReducer,
      forgetPassword:forgetPasswordReducer,
-     cart:cartReducer
+     cart:cartReducer,
+     newOrder:newOrderReuducer
 
  })
 let initialState={
@@ -32,8 +34,13 @@ let initialState={
 
 const middleWare=[thunk]
 
-const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
-
+// const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+let composeEnhancers = null;
+if (process.env.NODE_ENV === 'development') {
+   composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+} else {
+   composeEnhancers = compose;
+}
 const store = configureStore(
         {reducer:reducers},
         initialState,
