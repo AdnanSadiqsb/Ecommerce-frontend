@@ -16,11 +16,17 @@ const reducers = combineReducers({
  })
 let initialState={
     cart:{
+        
+        shippingInfo:localStorage.getItem('shippingInfo')?
+        JSON.parse(localStorage.getItem('shippingInfo')):
+        {address:'', city:'', state:'', country:'',pinCode:'', phoneNo:''},
+
         cartItems: localStorage.getItem('cartItems')
         ?
         JSON.parse(localStorage.getItem('cartItems'))
         :
-        [],
+        []
+
     }
 }
 

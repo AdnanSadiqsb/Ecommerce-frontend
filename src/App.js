@@ -18,6 +18,8 @@ import UpdatePassword from './components/user/UpdatePassword.js';
 import ForgetPassword from './components/user/ForgetPassword.js';
 import ResetPassword from './components/user/ResetPassword.js';
 import Cart from './components/cart/Cart.js';
+import Shipping from './components/cart/Shipping.js';
+import ConfirmOrder from './components/cart/ConfirmOrder.js';
 function App() {
   const dispatch=useDispatch()
   const {isAuthenciate, user} =useSelector(state=>state.user)
@@ -43,6 +45,8 @@ function App() {
 
         {isAuthenciate && <Route exact path ='/me/update' element={<UpdateProfile/> }  ></Route>}
         {isAuthenciate && <Route exact path ='/password/update' element={<UpdatePassword/> }  ></Route>}
+        {isAuthenciate && <Route exact path ='/shipping' element={<Shipping/> }  ></Route>}
+        {isAuthenciate && <Route exact path ='/order/confirm' element={<ConfirmOrder/> }  ></Route>}
 
         <Route exact path ='/password/forget' element={<ForgetPassword/> }  ></Route>
         <Route exact path ='/password/reset/:token' element={<ResetPassword/> }  ></Route>

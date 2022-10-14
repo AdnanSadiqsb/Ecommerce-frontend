@@ -4,17 +4,33 @@ import './cart.css'
 import CartItems from './CartItems'
 import {useDispatch,useSelector} from 'react-redux'
 import { useEffect } from 'react'
-import {addItemsToCart, getCartItems, removeItemFromCart} from '../../actions/cartAction'
+import {addItemsToCart, getCartItems, removeItemFromCart, getShippingInfo} from '../../actions/cartAction'
 import RemoveShoppingCartIcon  from '@material-ui/icons/RemoveShoppingCart'
 import {Link} from 'react-router-dom'
 import { useState } from 'react'
+import {useNavigate} from 'react-router-dom'
+
 function Cart() {
+    const navigate=useNavigate()
     const [grossTotal, setGrossTotal]=useState(0)
     const dispatch=useDispatch()
+    const {isAuthenciate} =useSelector(state=>state.user)
+
     const {cartItems}= useSelector((state)=>state.cart)
+    const claculateGrossTota=()=>{
+        var total=0
+        var itemPrice=0
+        cartItems.forEach(item => {
+            itemPrice=item.price*item.quantity
+            total=itemPrice+total
+            
+        });
+        setGrossTotal(total)
+    }
     useEffect(()=>{
         dispatch(getCartItems())
-    },[addItemsToCart])
+        
+    },[dispatch])
     useEffect(()=>{
         
         claculateGrossTota()
@@ -43,15 +59,18 @@ function Cart() {
     const deleteCartItem=(id)=>{
         dispatch(removeItemFromCart(id))
     }
-    const claculateGrossTota=()=>{
-        var total=0
-        var itemPrice=0
-        cartItems.forEach(item => {
-            itemPrice=item.price*item.quantity
-            total=itemPrice+total
-            
-        });
-        setGrossTotal(total)
+
+    const checkOutHandler=()=>{
+        if(isAuthenciate)
+        {
+            dispatch(getShippingInfo())
+
+            navigate('/shipping')
+        }
+        else{
+            navigate('/login')
+        }
+        // navigate('/login?redirect=/shipping')
     }
 
   return (
@@ -100,7 +119,7 @@ function Cart() {
           </div>
           <div className='checkOutBox'>
   
-              <button >Check Out</button>
+              <button onClick={checkOutHandler} >Check Out</button>
           </div>
         </div>
       </Fragment>    

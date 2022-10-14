@@ -8,8 +8,10 @@ import FaceIcon from '@material-ui/icons/Face'
 import {useDispatch, useSelector} from 'react-redux'
 import {clearErrors, login, register} from '../../actions/userAction'
 import {useAlert} from 'react-alert'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useLocation} from 'react-router-dom'
+
 function LoginSignup() {
+    const location= useLocation()
     const navigate=useNavigate()
     const dispatch = useDispatch()
     const alert=useAlert()
@@ -19,6 +21,8 @@ function LoginSignup() {
     const {error,loading, isAuthenciate} =useSelector(state=>state.user)
     const [loginEmail, setLoginEmail]=useState("")
     const [loginPassword, setLoginPassword]=useState("")
+    // const redirect= location.search ? location.search.split("=")[1]: "/account"
+    console.log(location.search)
     useEffect(()=>{
   
         if(error){
@@ -30,7 +34,7 @@ function LoginSignup() {
             navigate('/account')
         }
 
-    },[error, dispatch, alert, isAuthenciate])
+    },[error, dispatch, alert, isAuthenciate , navigate])
     const [user,setUser]=useState({
         name:"",
         email:"",

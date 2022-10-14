@@ -2,7 +2,8 @@ import React, {useEffect,useState} from 'react'
 import './header.css'
 import {Link} from 'react-router-dom'
 import {FaSearch} from 'react-icons/fa'
-
+import {BiLogIn} from 'react-icons/bi'
+import {BiCart} from 'react-icons/bi'
 const Header = () => {
   
   const [stickyNav, setStickyNav] = useState(false);
@@ -43,8 +44,8 @@ const Header = () => {
       
       </ul>
       <form className="d-flex" role="search">
-        <Link className='custom-icons' to={'/login'} ><i className="fa-solid fa-right-to-bracket"></i></Link>
-        <Link className='custom-icons' to={'/cart'}><i className="fa-solid fa-cart-arrow-down"></i></Link>
+        <Link className='custom-icons' to={'/login'} ><BiLogIn/> </Link>
+        <Link className='custom-icons' to={'/cart'}><BiCart/></Link>
         <Link className="custom-icons" to={'/Search'}><FaSearch/></Link>
       </form>
     </div>

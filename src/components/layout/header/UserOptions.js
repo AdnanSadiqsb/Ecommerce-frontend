@@ -35,6 +35,7 @@ const UserOptions = (user) => {
         
       }
       function orders() {
+        document.title='orders'
         navigate('/orders')
         
       }
@@ -52,6 +53,7 @@ const UserOptions = (user) => {
       function cart()
       {
         navigate('/cart')
+        document.title='cart'
       }
 
     const [open, setOpen]=useState(false)
