@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 import { productReducer,productDetailReducer } from './reducers/productReducer'
 import { userReducer,profileReducer, forgetPasswordReducer } from './reducers/userReducer'
 import { cartReducer } from './reducers/cartReducer'
-import { newOrderReuducer } from './reducers/orderReducer'
+import { myOrdersReducer, newOrderReuducer, orderDetailReducer } from './reducers/orderReducer'
 
 const reducers = combineReducers({
      products:productReducer,
@@ -13,7 +13,9 @@ const reducers = combineReducers({
      profile:profileReducer,
      forgetPassword:forgetPasswordReducer,
      cart:cartReducer,
-     newOrder:newOrderReuducer
+     newOrder:newOrderReuducer,
+     myOrders:myOrdersReducer,
+     orderDetails:orderDetailReducer
 
  })
 let initialState={

@@ -8,7 +8,7 @@ function CartItems({item, deleteCartItem}) {
     <Fragment>
         <div className='cartItem'>
 
-        <img src={item.image.url} alt="" />
+        <img src={item.image} alt="" />
         <div>
             <Link to={`/product/${item.product}`}>{item.name}</Link>
             <span>{`RS: ${item.price}`}</span>

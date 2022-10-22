@@ -8,7 +8,9 @@ display: flex;
 border: 2px solid red;
 
 }
-
+.btn-add-to-cart:disabled{
+    background-color: lightcoral !important;
+}
 .productDatail > div{
     width: 100%;
     display: flex;

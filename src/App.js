@@ -26,6 +26,8 @@ import axios from 'axios';
 import {Elements} from '@stripe/react-stripe-js'
 import {loadStripe} from '@stripe/stripe-js'
 import Success from './components/cart/Success.js';
+import MyOrder from './components/order/MyOrder.js';
+import OrderDetails from './components/order/OrderDetails.js';
 function App() {
   const dispatch=useDispatch()
   const {isAuthenciate, user} =useSelector(state=>state.user)
@@ -52,6 +54,17 @@ function App() {
 
     
   },[dispatch])
+  const checkProtectedRouter=(elemnt)=>
+  {
+    if(isAuthenciate)
+    {
+      return elemnt
+    }
+    else{
+      return 'LoginSignup'
+    }
+
+  }
 
   return (
     <Router>
@@ -73,6 +86,10 @@ function App() {
         {isAuthenciate && <Route exact path ='/shipping' element={<Shipping/> }  ></Route>}
         {isAuthenciate && <Route exact path ='/order/confirm' element={<ConfirmOrder/> }  ></Route>}
         {isAuthenciate && <Route exact path ='/success' element={<Success/> }  ></Route>}
+        {isAuthenciate && <Route exact path ='/orders/me' element={<MyOrder/> }  ></Route>  } 
+        {/* if not authenticate then redirect to login page*/}
+        <Route exact path ='/orders/me'  element={isAuthenciate? <MyOrder/>:<LoginSignup/> }  ></Route> 
+        <Route exact path ='/order/:id'  element={isAuthenciate? <OrderDetails/>:<LoginSignup/> }  ></Route> 
 
         
         {

@@ -28,7 +28,7 @@ function ProductDetail() {
         }
         else{
 
-            alert.info(`only avaliable quantity is ${quantity}`)
+            alert.info(`only avaliable quantity is ${product.stock}`)
         }
     }
     const decreaseQuantity=()=>{
@@ -110,7 +110,7 @@ function ProductDetail() {
                                 <button onClick={increaseQuantity}>+</button>
                             </div>
                             {"  "}
-                            <button onClick={addToCartHandler}>Add To Cart</button>
+                            <button className='btn-add-to-cart' disabled={product.stock<=0?true:false} onClick={addToCartHandler}>Add To Cart</button>
         
                         </div>
                         status:{" "}
