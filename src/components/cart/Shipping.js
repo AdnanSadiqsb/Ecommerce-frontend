@@ -31,7 +31,7 @@ function Shipping() {
         navigate('/login')
     }
 
-  },[isAuthenciate])
+  },[isAuthenciate, navigate])
 
 
     

@@ -55,7 +55,7 @@ border: 2px solid red;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding: 1vmax;
 }
-.deatailBlock-2 span{
+.deatailBlock-2-span{
     color: rgba(54, 54,54, 0.582);
     font:200  cursive;
     justify-content: space-between;
@@ -180,15 +180,14 @@ border: 2px solid red;
 
 
 }
-.reviewCard>span{
+.reviewCard-span{
     color: rgba(0, 0, 0, 0.445);
     font: 300 1.5vmax cursive;
 }
+
 .reviews{
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    overflow: scroll;
 
 }
 .noReview{

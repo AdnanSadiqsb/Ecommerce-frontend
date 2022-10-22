@@ -1,17 +1,18 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import RactStars from 'react-rating-stars-component'
 import './home.css'
-export default function ProductCard({product}) {
-    const options={
-        edit:false,
-        color:"rgba(20,20,20,0.1)",
-        activeColor:"tomato",
-        value:product.total_rating,
-        isHalf:true,
-        size:window.innerWidth<600 ?15:25,
+import {Rating} from '@material-ui/lab'
 
-    }
+export default function ProductCard({product}) {
+  const options={
+    size: window.innerWidth<600 ?"small":"medium",
+    value:product.total_rating,
+    readOnly:true,
+    precision:0.5,
+
+
+
+}
   return (
    
     <Link className='productCard' to={`/product/${product._id}`}>
@@ -21,10 +22,10 @@ export default function ProductCard({product}) {
         <img src={product.images[0].url} alt={product.name} />
         <p>{product.name}</p>
         <div>
-            <RactStars {...options} />
-            <span>Reviews({product.numOfReviews})</span>
+            <Rating {...options} />
+            <span className='productCard-span'>Reviews({product.numOfReviews})</span>
         </div>
-        <span>Rs:{product.price}</span>
+        <span style={{'color':'tomato'}}>Rs:{product.price}</span>
     
 
     </Link>

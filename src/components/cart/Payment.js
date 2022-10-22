@@ -27,7 +27,6 @@ function Payment() {
         //it recieve amount into pese so we * 100
         amount:Math.round(orderInfo.totalPrice*100)
     }
-    var cartItemWithUrl={}
     
     // cartItems.image=cartItems.image.url;
     const order={

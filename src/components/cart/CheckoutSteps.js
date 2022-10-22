@@ -3,7 +3,6 @@ import React,{Fragment} from 'react'
 import  LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck'
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance'
 import { Step, StepLabel, Stepper } from '@material-ui/core'
-import { addItemsToCart } from '../../actions/cartAction'
 import './checkSteps.css'
 function CheckoutSteps({activeSteps}) {
     

@@ -101,14 +101,11 @@
     align-items: center;
     justify-content: space-between;   
 }
-.productCard div span{
+.productCard-span{
     color: rgba(48, 48, 48, 0.537);
 
 }
-.productCard span{
-    color: tomato;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
+
 .productCard:hover{
     box-shadow: 0 0 5px rgba(15, 15, 15, 0.5);
     transform: translateY(-1.5vmax);
@@ -116,10 +113,11 @@
 
 @media only screen and (max-width:600px) {
     .container{
-        gap: 1rem;
+        gap: 0rem !important;
+        padding: 0 !important;
     }
     .productCard{
-        width: 10rem !important;
+        width: 8rem !important;
     }
     .productCard p{
         font-size: 1.7vmax;
@@ -133,7 +131,7 @@
         font-size: 1.5vmax;
 
     }
-    .productCard div span{
+    .productCard-span{
         margin: 0 0.5vmax;
     }
     
@@ -144,5 +142,6 @@
     .productCard{
         width: 14rem;
     }
+    
 
 }

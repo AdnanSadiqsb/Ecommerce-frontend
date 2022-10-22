@@ -43,8 +43,7 @@ function App() {
       }
     const {data}= await axios.get('http://localhost:4000/api/v1/stripeapikey', config)
     setStripeApiKey(data.stripeApiKey)
-    console.log(data)
-    console.log(data.stripeApiKey)
+   
 
   }
 
@@ -54,17 +53,7 @@ function App() {
 
     
   },[dispatch])
-  const checkProtectedRouter=(elemnt)=>
-  {
-    if(isAuthenciate)
-    {
-      return elemnt
-    }
-    else{
-      return 'LoginSignup'
-    }
 
-  }
 
   return (
     <Router>
