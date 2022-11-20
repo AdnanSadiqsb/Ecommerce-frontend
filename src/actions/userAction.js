@@ -5,7 +5,7 @@ LOGOUT_SUCCESS, LOGOUT_FAIL,
 UPDATE_PROFILE_REQUEST ,UPDATE_PROFILE_SUCCESS,UPDATE_PROFILE_FAIL,
 UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS,UPDATE_PASSWORD_FAIL,
 FROGET_PASSWORD_FAIL,FROGET_PASSWORD_REQUEST,FROGET_PASSWORD_SUCCESS,
-RESET_PASSWORD_REQUEST,RESET_PASSWORD_FAIL,RESET_PASSWORD_SUCCESS
+RESET_PASSWORD_REQUEST,RESET_PASSWORD_FAIL,RESET_PASSWORD_SUCCESS,
 
 
 
@@ -25,7 +25,8 @@ export const login=(email,password)=> async(dispatch)=>{
               withCredentials: true
             }
         const {data}= await axios.post('http://localhost:4000/api/v1/login',{email,password}, config);
-        console.log(data)
+        console.log(data.user.role)
+        
         dispatch({type:LOGIN_SUCCESS, payload:data.user})
 
         
@@ -63,7 +64,7 @@ export const loadUser =()=> async(dispatch)=>{
  try {
         dispatch({type:LOAD_USER_REQUEST})
         const {data}= await axios.get('http://localhost:4000/api/v1/me',{withCredentials: true});
-        console.log(data)
+        console.log(data.user.role)
         dispatch({type:LOAD_USER_SUCCESS, payload:data.user})
 
         

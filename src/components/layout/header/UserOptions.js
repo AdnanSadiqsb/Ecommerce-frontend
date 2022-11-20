@@ -31,7 +31,7 @@ const UserOptions = (user) => {
         options.unshift({icon: <DashboardIcon />, name: 'Dashboard', fun: dashboard  })
       }
       function dashboard() {
-        navigate('/dashboard')
+        navigate('/admin/dashboard')
         
       }
       function orders() {

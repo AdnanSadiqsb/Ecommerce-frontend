@@ -5,7 +5,8 @@ import {LOGIN_SUCCESS,LOGIN_REQUEST,LOGIN_FAIL,CLEAR_ERROR,
     UPDATE_PROFILE_REQUEST  , UPDATE_PROFILE_RESET,UPDATE_PROFILE_SUCCESS,UPDATE_PROFILE_FAIL,
     UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS,UPDATE_PASSWORD_FAIL,UPDATE_PASSWORD_RESET,
     FROGET_PASSWORD_FAIL,FROGET_PASSWORD_REQUEST,FROGET_PASSWORD_SUCCESS,
-    RESET_PASSWORD_REQUEST,RESET_PASSWORD_FAIL,RESET_PASSWORD_SUCCESS
+    RESET_PASSWORD_REQUEST,RESET_PASSWORD_FAIL,RESET_PASSWORD_SUCCESS,
+    
 
 } from '../constants/userConstants'
 
@@ -17,25 +18,26 @@ export const userReducer=(state={user:{}},action)=>{
         case LOGIN_REQUEST:
         case REGISTER_USER_REQUEST:
         case LOAD_USER_REQUEST:
-            console.log("login request")
             return{
                 loading:true,
-                isAuthenciate:false
+                isAuthenciate:false,
+                isAdmin:false
             };
         case LOGIN_SUCCESS:
         case REGISTER_USER_SUCCESS:
         case LOAD_USER_SUCCESS:
-            console.log("login acces")
             return{
                 
                 loading:false,
                 isAuthenciate:true,
-                user:action.payload
+                user:action.payload,
+                isAdmin: action.payload.role==='admin'?true:false
                 };
         case LOGOUT_SUCCESS:
             return{
                 loading:false,
                 isAuthenciate:false,
+                isAdmin:false,
                 user:null
             }
         case LOGIN_FAIL:
@@ -45,14 +47,16 @@ export const userReducer=(state={user:{}},action)=>{
                 loading:false,
                 isAuthenciate:false,
                 user:null,
-                error:action.payload
+                error:action.payload,
+                isAdmin:false
                 };
         case LOAD_USER_FAIL:
             return{
                 loading:false,
                 isAuthenciate:false,
                 user:null,
-                error:action.payload 
+                error:action.payload ,
+                isAdmin:false
             };
         case LOGOUT_FAIL:
             return{

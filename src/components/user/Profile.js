@@ -11,7 +11,6 @@ function Profile() {
     const {loading,user, isAuthenciate} =useSelector(state=>state.user)
 
 
-    console.log(loading)
     useEffect(()=>{
         if(isAuthenciate===false)
         {

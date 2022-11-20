@@ -28,10 +28,15 @@ import {loadStripe} from '@stripe/stripe-js'
 import Success from './components/cart/Success.js';
 import MyOrder from './components/order/MyOrder.js';
 import OrderDetails from './components/order/OrderDetails.js';
+import Dashboard from './components/admin/Dashboard.js';
+import ProductList from './components/admin/ProductList.js';
+import NewProduct from './components/admin/NewProduct.js';
+import UpdateProduct from './components/admin/UpdateProduct.js';
 function App() {
   const dispatch=useDispatch()
-  const {isAuthenciate, user} =useSelector(state=>state.user)
+  const {isAuthenciate, user, isAdmin} =useSelector(state=>state.user)
   const [stripeApiKey, setStripeApiKey]=useState('')
+  console.log(isAdmin)
   async function getStripeApiKey()
   {
     console.log("request progress")
@@ -46,14 +51,12 @@ function App() {
    
 
   }
-
   React.useEffect(()=>{
     dispatch(loadUser())
     getStripeApiKey()
 
     
   },[dispatch])
-
 
   return (
     <Router>
@@ -83,7 +86,7 @@ function App() {
         
         {
           stripeApiKey &&(
-            isAuthenciate && <Route exact path ='/process/payment' element={<Elements stripe={loadStripe(stripeApiKey)}><Payment/></Elements> }  ></Route>
+            isAuthenciate && <Route exact path ='/process/payment' element={<Elements stripe={ loadStripe(stripeApiKey)}><Payment/></Elements> }  ></Route>
 
           )
         }
@@ -92,6 +95,12 @@ function App() {
         <Route exact path ='/password/forget' element={<ForgetPassword/> }  ></Route>
         <Route exact path ='/password/reset/:token' element={<ResetPassword/> }  ></Route>
         <Route exact path ='/cart' element={<Cart/> }  ></Route>
+        
+        {isAuthenciate && isAdmin && <Route exact path ='/admin/dashboard' element={<Dashboard/>}  ></Route> }
+        {isAuthenciate && isAdmin && <Route exact path ='/admin/products' element={<ProductList/>}  ></Route> }
+        {isAuthenciate && isAdmin && <Route exact path ='/admin/product/new' element={<NewProduct/>}  ></Route> }
+        {isAuthenciate && isAdmin && <Route exact path ='/admin/product/:id' element={<UpdateProduct/>}  ></Route> }
+
 
       </Routes>
 

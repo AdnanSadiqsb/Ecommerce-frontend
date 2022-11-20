@@ -22,7 +22,6 @@ function LoginSignup() {
     const [loginEmail, setLoginEmail]=useState("")
     const [loginPassword, setLoginPassword]=useState("")
     // const redirect= location.search ? location.search.split("=")[1]: "/account"
-    console.log(location.search)
     useEffect(()=>{
   
         if(error){

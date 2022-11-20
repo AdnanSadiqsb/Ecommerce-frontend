@@ -28,7 +28,6 @@ function Payment() {
         amount:Math.round(orderInfo.totalPrice*100)
     }
     
-    // cartItems.image=cartItems.image.url;
     const order={
         shippingInfo,
         orderItems:cartItems,
